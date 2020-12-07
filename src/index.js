@@ -3,7 +3,7 @@ const path = require('path');
 const ytdlWrapper = require('youtube-dl-wrap');
 
 const binpath = path.join(__dirname, '..', 'youtube-dl'); // store bins in the root folder of the module
-require('update-ytdl'); // when require()d, download the bin if it doesn't exist, or update it if it does
+require('./update-ytdl'); // when require()d, download the bin if it doesn't exist, or update it if it does
 const ytdl = new ytdlWrapper(binpath); // create youtube-dl wrapper
 
 let defaults = ['-f', 'bestaudio[ext=opus]/bestaudio']; // some sensible defaults. get audio, opus when possible
