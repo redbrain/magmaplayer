@@ -1,10 +1,11 @@
 {
   "name": "magmaplayer",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "description": "A better audio player for Discord.JS",
   "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "node update-ytdl.js"
   },
   "repository": {
     "type": "git",
