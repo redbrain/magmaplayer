@@ -19,7 +19,9 @@ return ytdl.execStream(allArgs.unshift(link),options); // add the link at the be
 
 module.exports = magma; // default export, aka itself when required
 
-magma.getInfo = (url) => {
-    return ytdl.getVideoInfo(url);
-} // getInfo
+magma.getInfo = async (url) => { // getInfo
+    if (!isAUrl(link)) link = 'ytsearch:'+link; // if the term isnt a url, make it a ytsearch term
+    return await ytdl.getVideoInfo(url);
+}
+
 magma.isAUrl = isAUrl; // isAUrl
