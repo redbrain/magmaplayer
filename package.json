@@ -1,6 +1,6 @@
 {
   "name": "magmaplayer",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A better audio player for Discord.JS",
   "main": "src/index.js",
   "scripts": {

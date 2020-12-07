@@ -19,5 +19,7 @@ return ytdl.execStream(allArgs.unshift(link),options); // add the link at the be
 
 module.exports = magma; // default export, aka itself when required
 
-magma.getInfo = ytdl.getVideoInfo; // getInfo
+magma.getInfo = (url) => {
+    return ytdl.getVideoInfo(url);
+} // getInfo
 magma.isAUrl = isAUrl; // isAUrl
