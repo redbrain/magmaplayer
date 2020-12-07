@@ -1,37 +1,23 @@
 // require all the things
-const path = require('path');
 const ytdlWrapper = require('youtube-dl-wrap');
+const binaryPath = require('./setup'); // execute setup and get path at once
 
-const binpath = path.join(__dirname, '..', 'youtube-dl'); // store bins in the root folder of the module
-require('./update-ytdl'); // when require()d, download the bin if it doesn't exist, or update it if it does
-const ytdl = new ytdlWrapper(binpath); // create youtube-dl wrapper
+const ytdl = new ytdlWrapper(binaryPath); // create youtube-dl wrapper
 
-let defaults = ['-f', 'bestaudio[ext=opus]/bestaudio']; // some sensible defaults. get audio, opus when possible
-let lastUpdate = Date.now();
+let defaults = ['-q','-U','-f','bestaudio[ext=opus]/bestaudio']; // some sensible defaults. be quiet, auto-update, and get audio (opus when possible)
 
-const isAUrl = (url) => {
+const isAUrl = (url) => { // valid url? true/false
     return url.match(/((([A-Za-z]{3,9}:(?:\/\/)?)(?:[\-;:&=\+\$,\w]+@)?[A-Za-z0-9\.\-]+|(?:www\.|[\-;:&=\+\$,\w]+@)[A-Za-z0-9\.\-]+)((?:\/[\+~%\/\.\w\-_]*)?\??(?:[\-\+=&;%@\.\w_]*)#?(?:[\.\!\/\\\w]*))?)/);
 };
 
-const getStream = (link, args, options) => {
-    if (typeof args === 'string') args = args.split(' ');
-    if (!isAUrl(link)) link = 'ytsearch:'+link;
-    allArgs = defaults.concat(args);
-    return ytdl.execStream(allArgs.unshift(link),options);
-};
-
 const magma = (link, args = [], options = {}) => {
-    if (Date.now() - lastUpdate >= 1000*60*60*24) {
-        ytdl.execPromise(['-U']).then( () => {
-            lastUpdate = Date.now();
-            return getStream(link, args, options);
-        });
-    } else {
-        return getStream(link, args, options);
-    }
+if (typeof args === 'string') args = args.split(' '); // turns args into an array if they aren't already
+if (!isAUrl(link)) link = 'ytsearch:'+link; // if the term isnt a url, make it a ytsearch term
+allArgs = defaults.concat(args); // add the default arguments at the beginning
+return ytdl.execStream(allArgs.unshift(link),options); // add the link at the beginning, and any options given. return a stream.
 };
 
-module.exports = magma; // default export
+module.exports = magma; // default export, aka itself when required
 
 magma.getInfo = ytdl.getVideoInfo; // getInfo
 magma.isAUrl = isAUrl; // isAUrl
