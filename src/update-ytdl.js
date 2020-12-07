@@ -1,6 +1,8 @@
 const fs = require('fs');
 const path = require('path');
+
 const ytdlWrapper = require('youtube-dl-wrap');
+const ytdl = new ytdlWrapper(binpath);
 
 const binpath = path.join(__dirname, '..', 'youtube-dl');
 
