@@ -13,7 +13,6 @@ const ytdl = new ytdlWrapper(binpath); // create youtube-dl wrapper
         ytdl.execPromise(['-U']);
     }
 })(); // when require()d, download the bin if it doesn't exist, or update it if it does
-setInterval(
 
 let defaults = ['-f', 'bestaudio[ext=opus]/bestaudio']; // some sensible defaults. get audio, opus when possible
 let lastUpdate = Date.now();
