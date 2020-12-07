@@ -7,7 +7,9 @@ const binpath = path.join(__dirname, '..', 'youtube-dl');
 (async () => {
     if (!fs.existsSync(binpath)) {
         await ytdlWrapper.downloadFromWebsite(binpath);
-        await fs.chmod(binpath, '755');
+        fs.chmod(binpath, '755', (err)=>{
+            if (err) throw err;
+        });
     } else {
         await ytdl.execPromise(['-U']);
     }

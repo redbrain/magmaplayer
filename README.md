@@ -1,3 +1,4 @@
+**magmaplayer is in pre-release 0! expect bugs and inconsistent behavior until v1**
 
 # magmaplayer - a better audio player for discord.js
 
