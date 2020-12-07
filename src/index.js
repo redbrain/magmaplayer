@@ -1,5 +1,4 @@
 // require all the things
-const fs = require('fs');
 const path = require('path');
 const ytdlWrapper = require('youtube-dl-wrap');
 
