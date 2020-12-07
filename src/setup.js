@@ -12,7 +12,7 @@ const binaryPath = path.join(__dirname, '..', binaryName);
 (async () => {
     if (!fs.existsSync(binaryPath)) {
         await ytdlWrapper.downloadFromWebsite(binaryPath);
-        if (platform === "win32") {
+        if (platform !== "win32") {
             fs.chmod(binaryPath, '755', (err)=>{
                 if (err) throw err;
             });
