@@ -14,7 +14,8 @@ const magma = (link, args = [], options = {}) => {
     if (typeof args === 'string') args = args.split(' '); // turns args into an array if they aren't already
     if (!isAUrl(link)) link = 'ytsearch:'+link; // if the term isnt a url, make it a ytsearch term
     allArgs = defaults.concat(args); // add the default arguments at the beginning
-    return ytdl.execStream(allArgs.unshift(link),options); // add the link at the beginning, and any options given. return a stream.
+    allArgs.unshift(link); // add the link at the beginning
+    return ytdl.execStream(allArgs,options); // add any options given. return a stream
 };
 
 module.exports = magma; // default export, aka itself when required
