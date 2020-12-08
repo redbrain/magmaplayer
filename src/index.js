@@ -1,6 +1,6 @@
 // require all the things
 const ytdlWrapper = require('youtube-dl-wrap');
-const binaryPath = require('./setup'); // execute setup and get path at once
+const { binaryPath } = require('./setup'); // execute setup and get path at once
 
 const ytdl = new ytdlWrapper(binaryPath); // create youtube-dl wrapper
 

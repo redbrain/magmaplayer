@@ -20,4 +20,4 @@ const binaryPath = path.join(__dirname, '..', binaryName);
     }
 })();
 
-return binaryPath; // execute setup and get path at once
+module.exports = { binaryPath: binaryPath }; // execute setup and get path at once
