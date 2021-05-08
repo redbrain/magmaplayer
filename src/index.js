@@ -4,7 +4,7 @@ const { binaryPath } = require('./setup'); // execute setup and get path at once
 
 const ytdl = new ytdlWrapper(binaryPath); // create youtube-dl wrapper
 
-let defaults = ['-q','-U','-f','bestaudio[ext=opus]/bestaudio/best']; // some sensible defaults. be quiet, auto-update, and get audio (opus when possible)
+let defaults = ['-q','-U','-f','bestaudio[acodec=opus]/bestaudio/best']; // some sensible defaults. be quiet, auto-update, and get audio (opus when possible)
 
 const isAUrl = (url) => { // valid url? true/false
     return url.match(/((([A-Za-z]{3,9}:(?:\/\/)?)(?:[\-;:&=\+\$,\w]+@)?[A-Za-z0-9\.\-]+|(?:www\.|[\-;:&=\+\$,\w]+@)[A-Za-z0-9\.\-]+)((?:\/[\+~%\/\.\w\-_]*)?\??(?:[\-\+=&;%@\.\w_]*)#?(?:[\.\!\/\\\w]*))?)/);
